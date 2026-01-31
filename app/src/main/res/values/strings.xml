@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resume Architect</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_templates">Templates</string>
+    <string name="nav_career_hub">Career Hub</string>
+    
+    <!-- Home Screen -->
+    <string name="home_title">My Resumes</string>
+    <string name="home_create_new">Create Resume</string>
+    <string name="home_empty_state">No resumes yet. Tap + to create your first one!</string>
+    <string name="home_search_hint">Search resumes…</string>
+    
+    <!-- Template Screen -->
+    <string name="templates_title">Choose Template</string>
+    <string name="templates_category_all">All</string>
+    <string name="templates_category_modern">Modern</string>
+    <string name="templates_category_creative">Creative</string>
+    <string name="templates_category_executive">Executive</string>
+    <string name="templates_category_technical">Technical</string>
+    
+    <!-- Resume Builder -->
+    <string name="builder_step_contact">Contact Info</string>
+    <string name="builder_step_summary">Summary</string>
+    <string name="builder_step_experience">Experience</string>
+    <string name="builder_step_education">Education</string>
+    <string name="builder_step_skills">Skills</string>
+    <string name="builder_step_custom">Custom Sections</string>
+    
+    <!-- Contact Info -->
+    <string name="contact_full_name">Full Name</string>
+    <string name="contact_email">Email</string>
+    <string name="contact_phone">Phone Number</string>
+    <string name="contact_address">Address</string>
+    <string name="contact_linkedin">LinkedIn</string>
+    <string name="contact_portfolio">Portfolio URL</string>
+    <string name="contact_professional_title">Professional Title</string>
+    
+    <!-- Experience -->
+    <string name="experience_add">Add Experience</string>
+    <string name="experience_company">Company</string>
+    <string name="experience_position">Position</string>
+    <string name="experience_location">Location</string>
+    <string name="experience_start_date">Start Date</string>
+    <string name="experience_end_date">End Date</string>
+    <string name="experience_current">Currently working here</string>
+    <string name="experience_description">Achievements (one per line)</string>
+    <string name="experience_add_bullet">Add achievement bullet point</string>
+    
+    <!-- Education -->
+    <string name="education_add">Add Education</string>
+    <string name="education_institution">Institution</string>
+    <string name="education_degree">Degree</string>
+    <string name="education_field">Field of Study</string>
+    <string name="education_gpa">GPA (optional)</string>
+    <string name="education_honors">Honors &amp; Awards</string>
+    
+    <!-- Skills -->
+    <string name="skills_add">Add Skill</string>
+    <string name="skills_category_technical">Technical Skills</string>
+    <string name="skills_category_soft">Soft Skills</string>
+    <string name="skills_category_languages">Languages</string>
+    
+    <!-- Actions -->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_duplicate">Duplicate</string>
+    <string name="action_share">Share</string>
+    <string name="action_export">Export PDF</string>
+    <string name="action_preview">Preview</string>
+    <string name="action_apply">Apply</string>
+    
+    <!-- Messages -->
+    <string name="message_saved">Resume saved</string>
+    <string name="message_exported">Resume exported successfully</string>
+    <string name="message_delete_confirm">Delete this resume?</string>
+    <string name="message_unsaved_changes">You have unsaved changes. Discard?</string>
+    
+    <!-- Errors -->
+    <string name="error_required_field">This field is required</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_export_failed">Failed to export PDF</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+</resources>
