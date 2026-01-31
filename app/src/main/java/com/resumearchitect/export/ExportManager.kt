@@ -250,25 +250,25 @@ class ExportManager @Inject constructor(
 
 // Extension functions for synchronous repository access
 private suspend fun ResumeRepository.getResumeSync(resumeId: String): Resume? {
-    return getResumeById(resumeId).value
+    return getResumeById(resumeId).first()
 }
 
 private suspend fun ResumeRepository.getPersonalInfoSync(resumeId: String): PersonalInfo? {
-    return getPersonalInfo(resumeId).value
+    return getPersonalInfo(resumeId).first()
 }
 
 private suspend fun ResumeRepository.getWorkExperiencesSync(resumeId: String): List<WorkExperience> {
-    return getWorkExperiences(resumeId).value
+    return getWorkExperiences(resumeId).first()
 }
 
 private suspend fun ResumeRepository.getEducationsSync(resumeId: String): List<Education> {
-    return getEducations(resumeId).value
+    return getEducations(resumeId).first()
 }
 
 private suspend fun ResumeRepository.getSkillsSync(resumeId: String): List<Skill> {
-    return getSkills(resumeId).value
+    return getSkills(resumeId).first()
 }
 
 private suspend fun ResumeRepository.getCustomSectionsSync(resumeId: String): List<CustomSection> {
-    return getCustomSections(resumeId).value
+    return getCustomSections(resumeId).first()
 }

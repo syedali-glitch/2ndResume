@@ -124,7 +124,6 @@ fun WorkExperienceDialog(
                             value = employmentType.name.replace('_', ' '),
                             onValueChange = { },
                             label = "Employment Type",
-                            readOnly = true,
                             trailingIcon = {
                                 IconButton(onClick = { showEmploymentTypeMenu = true }) {
                                     Icon(Icons.Default.ArrowDropDown, contentDescription = null)
@@ -159,7 +158,6 @@ fun WorkExperienceDialog(
                             value = formatDate(startDate),
                             onValueChange = { },
                             label = "Start Date",
-                            readOnly = true,
                             modifier = Modifier.weight(1f),
                             trailingIcon = {
                                 IconButton(onClick = { showStartDatePicker = true }) {
@@ -173,7 +171,6 @@ fun WorkExperienceDialog(
                             value = if (isCurrentPosition) "Present" else formatDate(endDate),
                             onValueChange = { },
                             label = "End Date",
-                            readOnly = true,
                             enabled = !isCurrentPosition,
                             modifier = Modifier.weight(1f),
                             trailingIcon = {

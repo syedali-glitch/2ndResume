@@ -135,7 +135,6 @@ fun EducationDialog(
                             value = formatDate(startDate),
                             onValueChange = { },
                             label = "Start Date",
-                            readOnly = true,
                             modifier = Modifier.weight(1f),
                             trailingIcon = {
                                 IconButton(onClick = { showStartDatePicker = true }) {
@@ -149,7 +148,6 @@ fun EducationDialog(
                             value = formatDate(endDate),
                             onValueChange = { },
                             label = "End Date",
-                            readOnly = true,
                             modifier = Modifier.weight(1f),
                             trailingIcon = {
                                 IconButton(onClick = { showEndDatePicker = true }) {

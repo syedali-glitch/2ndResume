@@ -8,7 +8,7 @@ import com.tom_roush.pdfbox.pdmodel.PDPage
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream
 import com.tom_roush.pdfbox.pdmodel.common.PDRectangle
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font
-import com.tom_roush.pdfbox.pdmodel.font.Standard14Fonts
+import com.tom_roush.pdfbox.pdmodel.font.Standard14Fonts.FontName
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,8 +24,8 @@ class PdfGenerator @Inject constructor(
     
     companion object {
         // Page dimensions (A4)
-        const val PAGE_WIDTH = PDRectangle.A4.width
-        const val PAGE_HEIGHT = PDRectangle.A4.height
+        val PAGE_WIDTH = PDRectangle.A4.width
+        val PAGE_HEIGHT = PDRectangle.A4.height
         
         // Margins
         const val MARGIN_LEFT = 50f
@@ -106,8 +106,8 @@ class PdfGenerator @Inject constructor(
         config: TemplateConfig
     ) {
         var yPosition = PAGE_HEIGHT - MARGIN_TOP
-        val font = PDType1Font(Standard14Fonts.FontName.HELVETICA)
-        val fontBold = PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD)
+        val font = PDType1Font(FontName.HELVETICA)
+        val fontBold = PDType1Font(FontName.HELVETICA_BOLD)
         
         // Personal Info Header
         yPosition = renderHeader(contentStream, data.personalInfo, yPosition, fontBold, font, config)
