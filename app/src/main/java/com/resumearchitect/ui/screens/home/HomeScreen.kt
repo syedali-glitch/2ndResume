@@ -33,33 +33,69 @@ fun HomeScreen(
             GlassCard(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                cornerRadius = 16.dp
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                cornerRadius = 20.dp
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(20.dp)
                 ) {
-                    Text(
-                        text = "Resume Architect",
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
+                    // Header with Templates button
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Resume Architect",
+                                style = MaterialTheme.typography.headlineLarge,
+                                fontWeight = FontWeight.ExtraBold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "Build your professional resume",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
+                        
+                        // Templates Quick Access Button
+                        GlassIconButton(
+                            onClick = { navController.navigate(Screen.Templates.route) },
+                            modifier = Modifier.size(56.dp)
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier.padding(4.dp)
+                            ) {
+                                Icon(
+                                    Icons.Default.Palette,
+                                    contentDescription = "Browse Templates",
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(28.dp)
+                                )
+                            }
+                        }
+                    }
                     
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
                     
+                    // Search Box
                     GlassTextField(
                         value = searchQuery,
                         onValueChange = viewModel::updateSearchQuery,
-                        placeholder = "Search resumes...",
+                        placeholder = "Search your resumes...",
                         singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
                         leadingIcon = {
                             Icon(
                                 Icons.Default.Search,
                                 contentDescription = "Search",
-                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                                tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
                             )
                         }
                     )
@@ -182,17 +218,19 @@ fun ResumeCard(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = resume.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1
                 )
                 
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 Text(
                     text = formatDate(resume.updatedAt),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    fontWeight = FontWeight.Medium
                 )
             }
             

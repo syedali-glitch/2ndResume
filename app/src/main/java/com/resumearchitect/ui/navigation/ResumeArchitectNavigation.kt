@@ -54,7 +54,11 @@ fun ResumeArchitectNavigation(
             )
         }
         
-        // TODO: Add template selection screen
-        // composable(Screen.Templates.route) { TemplateSelectionScreen(navController) }
+        composable(Screen.Templates.route) {
+            com.resumearchitect.ui.screens.templates.TemplateSelectionScreen(
+                resumeId = "", // Empty for browsing templates
+                navController = navController
+            )
+        }
     }
 }

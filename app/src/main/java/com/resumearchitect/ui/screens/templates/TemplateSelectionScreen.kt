@@ -83,6 +83,37 @@ fun TemplateSelectionScreen(
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
         ) {
+            // Browse Info Banner (when no resume selected)
+            if (resumeId.isBlank()) {
+                GlassCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    cornerRadius = 12.dp,
+                    frostedBackground = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Default.Info,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Browse templates • Create a resume to apply one",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                        )
+                    }
+                }
+            }
+            
             // Category Filter
             CategoryFilterRow(
                 selectedCategory = selectedCategory,
