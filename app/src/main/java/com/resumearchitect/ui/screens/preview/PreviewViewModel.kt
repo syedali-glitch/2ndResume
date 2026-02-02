@@ -41,12 +41,23 @@ class PreviewViewModel @Inject constructor(
         viewModelScope.launch {
             _previewState.value = PreviewState.Loading
             
-            val result = exportManager.generatePreview(resumeId, templateId)
-            
-            _previewState.value = if (result.isSuccess) {
-                PreviewState.Success(result.getOrNull()!!)
-            } else {
-                PreviewState.Error(result.exceptionOrNull()?.message ?: "Failed to generate preview")
+            try {
+                // Safety check: ensure resume exists
+                val currentResume = resume.value
+                if (currentResume == null) {
+                    _previewState.value = PreviewState.Error("Resume not found. Please try again.")
+                    return@launch
+                }
+                
+                val result = exportManager.generatePreview(resumeId, templateId)
+                
+                _previewState.value = if (result.isSuccess) {
+                    PreviewState.Success(result.getOrNull()!!)
+                } else {
+                    PreviewState.Error(result.exceptionOrNull()?.message ?: "Failed to generate preview")
+                }
+            } catch (e: Exception) {
+                _previewState.value = PreviewState.Error(e.message ?: "An unexpected error occurred")
             }
         }
     }
