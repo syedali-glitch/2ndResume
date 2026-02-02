@@ -12,6 +12,7 @@ import com.resumearchitect.pdf.TemplateConfig
 import com.resumearchitect.templates.TemplateRegistry
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File

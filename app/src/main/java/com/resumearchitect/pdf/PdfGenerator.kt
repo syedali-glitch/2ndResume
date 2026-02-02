@@ -8,7 +8,6 @@ import com.tom_roush.pdfbox.pdmodel.PDPage
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream
 import com.tom_roush.pdfbox.pdmodel.common.PDRectangle
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font
-import com.tom_roush.pdfbox.pdmodel.font.Standard14Fonts.FontName
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,6 +22,10 @@ class PdfGenerator @Inject constructor(
 ) {
     
     companion object {
+        // Fonts
+        val FONT_REGULAR = PDType1Font.HELVETICA
+        val FONT_BOLD = PDType1Font.HELVETICA_BOLD
+        
         // Page dimensions (A4)
         val PAGE_WIDTH = PDRectangle.A4.width
         val PAGE_HEIGHT = PDRectangle.A4.height
@@ -33,8 +36,18 @@ class PdfGenerator @Inject constructor(
         const val MARGIN_TOP = 50f
         const val MARGIN_BOTTOM = 50f
         
-        // Content width
-        val CONTENT_WIDTH = PAGE_WIDTH - MARGIN_LEFT - MARGIN_RIGHT
+        // Spacing
+        const val LINE_HEIGHT = 14f
+        const val SECTION_SPACING = 20f
+        const val ITEM_SPACING = 12f
+        
+        // Font sizes
+        const val FONT_SIZE_NAME = 24f
+        const val FONT_SIZE_CONTACT = 10f
+        const val FONT_SIZE_HEADING = 14f
+        const val FONT_SIZE_SUBHEADING = 12f
+        const val FONT_SIZE_BODY = 10f
+        const val FONT_SIZE_SMALL = 9f
     }
     
     /**

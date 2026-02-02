@@ -199,7 +199,7 @@ fun FlowRow(
     modifier: Modifier = Modifier,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    content: @Composable () -> Unit
+    content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit
 ) {
     androidx.compose.foundation.layout.FlowRow(
         modifier = modifier,
