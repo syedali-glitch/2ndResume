@@ -30,25 +30,14 @@ android {
         }
     }
 
-    signingConfigs {
-        // For development/testing releases
-        // In production, use a proper keystore
-        getByName("debug") {
-            // storeFile = file("debug.keystore")  // Use default ~/.android/debug.keystore
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
-    }
+
 
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             
-            // Use debug signing for testing
-            // IMPORTANT: Replace with production keystore before Play Store release
-            signingConfig = signingConfigs.getByName("debug")
+
             
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
