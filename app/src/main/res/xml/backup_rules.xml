@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <full-backup-content>
+    <!-- Include the database for backup -->
     <include domain="database" path="." />
-    <exclude domain="sharedpref" path="device.xml" />
+    
+    <!-- Exclude specific shared preferences if needed -->
+    <!-- <exclude domain="sharedpref" path="preferences.xml" /> -->
 </full-backup-content>
+
