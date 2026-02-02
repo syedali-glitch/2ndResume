@@ -24,6 +24,27 @@
 -dontwarn org.apache.fontbox.**
 -dontwarn org.bouncycastle.**
 
+# PDFBox optional dependencies (JP2 image codec - not used in our app)
+-dontwarn com.gemalto.jp2.JP2Decoder
+-dontwarn com.gemalto.jp2.JP2Encoder
+
+# Keep PDFBox classes we actually use
+-keep class com.tom_roush.pdfbox.** { *; }
+-dontwarn com.tom_roush.pdfbox.**
+
+# Kotlin serialization
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt
+
+# Keep Serializers
+-keep,includedescriptorclasses class com.resumearchitect.**$$serializer { *; }
+-keepclassmembers class com.resumearchitect.** {
+    *** Companion;
+}
+-keepclasseswithmembers class com.resumearchitect.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
 # Kotlin Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
