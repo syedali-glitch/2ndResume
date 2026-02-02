@@ -103,7 +103,22 @@ fun HomeScreen(
             }
         },
         floatingActionButton = {
-            // Removed FAB in favor of Quick Actions panel
+            val haptic = rememberHapticFeedback()
+            
+            FloatingActionButton(
+                onClick = {
+                    haptic.click()
+                    viewModel.createResume()
+                },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ) {
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = "Create Resume",
+                    modifier = Modifier.size(28.dp)
+                )
+            }
         }
     ) { paddingValues ->
         Column(

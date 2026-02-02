@@ -20,6 +20,8 @@ fun QuickActionsPanel(
     onBrowseTemplates: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val haptic = rememberHapticFeedback()
+    
     GlassCard(
         modifier = modifier.fillMaxWidth(),
         cornerRadius = 16.dp
@@ -47,7 +49,10 @@ fun QuickActionsPanel(
                     icon = Icons.Default.Add,
                     title = "Create New",
                     description = "Start fresh resume",
-                    onClick = onCreateNew,
+                    onClick = {
+                        haptic.click()
+                        onCreateNew()
+                    },
                     modifier = Modifier.weight(1f),
                     isPrimary = true
                 )
@@ -57,7 +62,10 @@ fun QuickActionsPanel(
                     icon = Icons.Default.Palette,
                     title = "Templates",
                     description = "Browse 10 designs",
-                    onClick = onBrowseTemplates,
+                    onClick = {
+                        haptic.click()
+                        onBrowseTemplates()
+                    },
                     modifier = Modifier.weight(1f),
                     isPrimary = false
                 )
