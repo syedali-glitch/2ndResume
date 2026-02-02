@@ -27,6 +27,32 @@ fun PreviewScreen(
     val previewState by viewModel.previewState.collectAsState()
     val exportState by viewModel.exportState.collectAsState()
     
+    // Safety: Show error if resume not found
+    if (resume == null) {
+        Scaffold(
+            topBar = {
+                PreviewTopBar(
+                    title = "Resume Preview",
+                    onBackClick = { navController.navigateUp() },
+                    onTemplateClick = {}
+                )
+            }
+        ) { paddingValues ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                ErrorView(
+                    message = "Resume not found",
+                    onRetry = { navController.navigateUp() }
+                )
+            }
+        }
+        return
+    }
+    
     // Show export success snackbar
     LaunchedEffect(exportState) {
         when (exportState) {
