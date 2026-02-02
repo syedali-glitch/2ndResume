@@ -134,6 +134,9 @@ fun HomeScreen(
                         onClick = {
                             navController.navigate(Screen.Builder.createRoute(resume.id))
                         },
+                        onPreview = {
+                            navController.navigate(Screen.Preview.createRoute(resume.id))
+                        },
                         onDuplicate = { viewModel.duplicateResume(resume) },
                         onDelete = { viewModel.deleteResume(resume) }
                     )
@@ -179,6 +182,7 @@ fun EmptyState(modifier: Modifier = Modifier) {
 fun ResumeCard(
     resume: Resume,
     onClick: () -> Unit,
+    onPreview: () -> Unit,
     onDuplicate: () -> Unit,
     onDelete: () -> Unit
 ) {
@@ -234,41 +238,56 @@ fun ResumeCard(
                 )
             }
             
-            Box {
+            // Action Buttons
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                // Preview Button (Eye Icon)
                 GlassIconButton(
-                    onClick = { showMenu = true }
+                    onClick = onPreview
                 ) {
                     Icon(
-                        Icons.Default.MoreVert,
-                        contentDescription = "More options",
-                        tint = MaterialTheme.colorScheme.onSurface
+                        Icons.Default.Visibility,
+                        contentDescription = "Preview Resume",
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
                 
-                DropdownMenu(
-                    expanded = showMenu,
-                    onDismissRequest = { showMenu = false }
-                ) {
-                    DropdownMenuItem(
-                        text = { Text("Duplicate") },
-                        onClick = {
-                            onDuplicate()
-                            showMenu = false
-                        },
-                        leadingIcon = {
-                            Icon(Icons.Default.ContentCopy, contentDescription = null)
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Delete") },
-                        onClick = {
-                            onDelete()
-                            showMenu = false
-                        },
-                        leadingIcon = {
-                            Icon(Icons.Default.Delete, contentDescription = null)
-                        }
-                    )
+                // More Options Menu
+                Box {
+                    GlassIconButton(
+                        onClick = { showMenu = true }
+                    ) {
+                        Icon(
+                            Icons.Default.MoreVert,
+                            contentDescription = "More options",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    
+                    DropdownMenu(
+                        expanded = showMenu,
+                        onDismissRequest = { showMenu = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Duplicate") },
+                            onClick = {
+                                onDuplicate()
+                                showMenu = false
+                            },
+                            leadingIcon = {
+                                Icon(Icons.Default.ContentCopy, contentDescription = null)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Delete") },
+                            onClick = {
+                                onDelete()
+                                showMenu = false
+                            },
+                            leadingIcon = {
+                                Icon(Icons.Default.Delete, contentDescription = null)
+                            }
+                        )
+                    }
                 }
             }
         }
