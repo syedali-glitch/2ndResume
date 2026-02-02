@@ -103,18 +103,23 @@ fun HomeScreen(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    viewModel.createResume()
-                },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Create Resume")
-            }
+            // Removed FAB in favor of Quick Actions panel
         }
     ) { paddingValues ->
-        if (resumes.isEmpty()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            // Quick Actions Panel
+            QuickActionsPanel(
+                onCreateNew = { viewModel.createResume() },
+                onBrowseTemplates = { navController.navigate(Screen.Templates.route) },
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+            
+            // Resumes List or Empty State
+            if (resumes.isEmpty()) {
             EmptyState(
                 modifier = Modifier
                     .fillMaxSize()
