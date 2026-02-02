@@ -34,7 +34,7 @@ android {
         // For development/testing releases
         // In production, use a proper keystore
         getByName("debug") {
-            storeFile = file("debug.keystore")
+            // storeFile = file("debug.keystore")  // Use default ~/.android/debug.keystore
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
