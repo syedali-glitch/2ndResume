@@ -138,6 +138,7 @@ fun SkillsScreen(viewModel: BuilderViewModel) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SkillCategoryCard(
     category: SkillCategory,

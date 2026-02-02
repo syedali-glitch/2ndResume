@@ -113,6 +113,7 @@ fun TemplateSelectionScreen(
     }
 }
 
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CategoryFilterRow(
