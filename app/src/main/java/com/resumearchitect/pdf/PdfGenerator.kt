@@ -119,8 +119,8 @@ class PdfGenerator @Inject constructor(
         config: TemplateConfig
     ) {
         var yPosition = PAGE_HEIGHT - MARGIN_TOP
-        val font = PDType1Font(FontName.HELVETICA)
-        val fontBold = PDType1Font(FontName.HELVETICA_BOLD)
+        val font = FONT_REGULAR
+        val fontBold = FONT_BOLD
         
         // Personal Info Header
         yPosition = renderHeader(contentStream, data.personalInfo, yPosition, fontBold, font, config)

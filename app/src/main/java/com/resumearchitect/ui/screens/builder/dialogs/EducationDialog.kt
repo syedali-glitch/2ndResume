@@ -226,7 +226,7 @@ fun EducationDialog(
                                 institution = institution,
                                 degree = degree,
                                 fieldOfStudy = fieldOfStudy,
-                                gpa = gpa.toDoubleOrNull(),
+                                gpa = if (gpa.isBlank()) null else gpa,
                                 startDate = startDate,
                                 endDate = endDate,
                                 honors = if (honors.isBlank()) emptyList() 
