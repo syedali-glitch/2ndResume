@@ -135,31 +135,32 @@ fun HomeScreen(
             
             // Resumes List or Empty State
             if (resumes.isEmpty()) {
-            EmptyState(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-            )
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(resumes, key = { it.id }) { resume ->
-                    ResumeCard(
-                        resume = resume,
-                        onClick = {
-                            navController.navigate(Screen.Builder.createRoute(resume.id))
-                        },
-                        onPreview = {
-                            navController.navigate(Screen.Preview.createRoute(resume.id))
-                        },
-                        onDuplicate = { viewModel.duplicateResume(resume) },
-                        onDelete = { viewModel.deleteResume(resume) }
-                    )
+                EmptyState(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                )
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(resumes, key = { it.id }) { resume ->
+                        ResumeCard(
+                            resume = resume,
+                            onClick = {
+                                navController.navigate(Screen.Builder.createRoute(resume.id))
+                            },
+                            onPreview = {
+                                navController.navigate(Screen.Preview.createRoute(resume.id))
+                            },
+                            onDuplicate = { viewModel.duplicateResume(resume) },
+                            onDelete = { viewModel.deleteResume(resume) }
+                        )
+                    }
                 }
             }
         }
