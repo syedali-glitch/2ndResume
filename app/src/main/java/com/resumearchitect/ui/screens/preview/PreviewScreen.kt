@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.resumearchitect.ui.components.*
+import com.resumearchitect.ui.navigation.Screen
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,7 +73,9 @@ fun PreviewScreen(
                 title = resume?.title ?: "Resume Preview",
                 onBackClick = { navController.navigateUp() },
                 onTemplateClick = {
-                    // TODO: Navigate to template selection
+                    resume?.let { r ->
+                        navController.navigate(Screen.ThemePreview.createRoute(r.id))
+                    }
                 }
             )
         },

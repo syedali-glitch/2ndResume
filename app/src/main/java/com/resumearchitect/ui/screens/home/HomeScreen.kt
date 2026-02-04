@@ -9,6 +9,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,11 +36,20 @@ fun HomeScreen(
     
     Scaffold(
         topBar = {
-            GlassCard(
+            // Vibrant Header Card
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 16.dp),
-                cornerRadius = 20.dp
+                    .padding(16.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(
+                        brush = Brush.linearGradient(
+                            colors = listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.tertiary
+                            )
+                        )
+                    )
             ) {
                 Column(
                     modifier = Modifier
@@ -54,31 +67,30 @@ fun HomeScreen(
                                 text = "Resume Architect",
                                 style = MaterialTheme.typography.headlineLarge,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = MaterialTheme.colorScheme.primary
+                                color = MaterialTheme.colorScheme.onPrimary
                             )
                             Text(
                                 text = "Build your professional resume",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                                color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f),
                                 modifier = Modifier.padding(top = 4.dp)
                             )
                         }
                         
                         // Templates Quick Access Button
-                        GlassIconButton(
+                        Surface(
                             onClick = { navController.navigate(Screen.Templates.route) },
-                            modifier = Modifier.size(56.dp)
+                            modifier = Modifier
+                                .size(50.dp)
+                                .clip(RoundedCornerShape(12.dp)),
+                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.2f)
                         ) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center,
-                                modifier = Modifier.padding(4.dp)
-                            ) {
+                            Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     Icons.Default.Palette,
                                     contentDescription = "Browse Templates",
-                                    tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(28.dp)
+                                    tint = MaterialTheme.colorScheme.onPrimary,
+                                    modifier = Modifier.size(24.dp)
                                 )
                             }
                         }

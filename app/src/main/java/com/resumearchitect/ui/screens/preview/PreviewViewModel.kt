@@ -63,6 +63,24 @@ class PreviewViewModel @Inject constructor(
     }
     
     /**
+     * Update resume theme settings
+     */
+    fun updateTheme(templateId: String, colorSchemeId: String) {
+        viewModelScope.launch {
+            val currentResume = resume.value ?: return@launch
+            
+            val updatedResume = currentResume.copy(
+                templateId = templateId,
+                colorSchemeId = colorSchemeId
+            )
+            
+            repository.updateResume(updatedResume)
+            // Regenerate preview with new settings
+            generatePreview(templateId)
+        }
+    }
+    
+    /**
      * Export resume to Downloads
      */
     fun exportResume() {

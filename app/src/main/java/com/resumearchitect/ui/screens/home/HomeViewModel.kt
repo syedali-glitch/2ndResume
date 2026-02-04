@@ -80,6 +80,16 @@ class HomeViewModel @Inject constructor(
         }
     }
     
+    suspend fun createResumeForTheme(templateId: String, colorSchemeId: String): String {
+        val count = resumes.value.size + 1
+        val resume = repository.createResume(
+            title = "My Resume $count",
+            templateId = templateId,
+            colorSchemeId = colorSchemeId
+        )
+        return resume.id
+    }
+    
     fun duplicateResume(resume: Resume) {
         viewModelScope.launch {
             repository.duplicateResume(resume.id)

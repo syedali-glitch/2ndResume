@@ -10,6 +10,17 @@ import com.resumearchitect.pdf.ColorScheme
 object ColorSchemes {
     
     /**
+     * Color scheme configuration with metadata
+     */
+    data class ColorSchemeConfig(
+        val id: String,
+        val name: String,
+        val primaryColor: Int,
+        val accentColor: Int,
+        val description: String = ""
+    )
+    
+    /**
      * Professional Blue - Trust, reliability, corporate
      * Perfect for: Finance, IT, Corporate roles
      */
@@ -98,19 +109,84 @@ object ColorSchemes {
     )
     
     /**
-     * Get all available color schemes
+     * Get all available color scheme configs with metadata
      */
-    fun getAllSchemes(): List<Pair<String, ColorScheme>> {
+    fun getAllSchemes(): List<ColorSchemeConfig> {
         return listOf(
-            "Professional Blue" to professionalBlue(),
-            "Corporate Gray" to corporateGray(),
-            "Modern Teal" to modernTeal(),
-            "Creative Purple" to creativePurple(),
-            "Warm Orange" to warmOrange(),
-            "Executive Black" to executiveBlack(),
-            "Fresh Green" to freshGreen(),
-            "Elegant Burgundy" to elegantBurgundy()
+            ColorSchemeConfig(
+                id = "professional-blue",
+                name = "Professional Blue",
+                primaryColor = Color.rgb(99, 102, 241),
+                accentColor = Color.rgb(59, 130, 246),
+                description = "Trust & reliability"
+            ),
+            ColorSchemeConfig(
+                id = "corporate-gray",
+                name = "Corporate Gray",
+                primaryColor = Color.rgb(55, 65, 81),
+                accentColor = Color.rgb(75, 85, 99),
+                description = "Sophisticated & professional"
+            ),
+            ColorSchemeConfig(
+                id = "modern-teal",
+                name = "Modern Teal",
+                primaryColor = Color.rgb(6, 182, 212),
+                accentColor = Color.rgb(20, 184, 166),
+                description = "Fresh & innovative"
+            ),
+            ColorSchemeConfig(
+                id = "creative-purple",
+                name = "Creative Purple",
+                primaryColor = Color.rgb(139, 92, 246),
+                accentColor = Color.rgb(168, 85, 247),
+                description = "Artistic & imaginative"
+            ),
+            ColorSchemeConfig(
+                id = "warm-orange",
+                name = "Warm Orange",
+                primaryColor = Color.rgb(249, 115, 22),
+                accentColor = Color.rgb(251, 146, 60),
+                description = "Energetic & approachable"
+            ),
+            ColorSchemeConfig(
+                id = "executive-black",
+                name = "Executive Black",
+                primaryColor = Color.rgb(17, 24, 39),
+                accentColor = Color.rgb(99, 102, 241),
+                description = "Powerful & authoritative"
+            ),
+            ColorSchemeConfig(
+                id = "fresh-green",
+                name = "Fresh Green",
+                primaryColor = Color.rgb(34, 197, 94),
+                accentColor = Color.rgb(74, 222, 128),
+                description = "Growth & sustainability"
+            ),
+            ColorSchemeConfig(
+                id = "elegant-burgundy",
+                name = "Elegant Burgundy",
+                primaryColor = Color.rgb(136, 19, 55),
+                accentColor = Color.rgb(190, 18, 60),
+                description = "Sophisticated & refined"
+            )
         )
+    }
+    
+    /**
+     * Get color scheme by ID
+     */
+    fun getSchemeById(id: String): ColorScheme {
+        return when (id) {
+            "professional-blue" -> professionalBlue()
+            "corporate-gray" -> corporateGray()
+            "modern-teal" -> modernTeal()
+            "creative-purple" -> creativePurple()
+            "warm-orange" -> warmOrange()
+            "executive-black" -> executiveBlack()
+            "fresh-green" -> freshGreen()
+            "elegant-burgundy" -> elegantBurgundy()
+            else -> professionalBlue() // Default
+        }
     }
     
     /**
@@ -130,3 +206,4 @@ object ColorSchemes {
         }
     }
 }
+

@@ -3,10 +3,12 @@ package com.resumearchitect.ui.screens.templates
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -135,7 +137,11 @@ fun TemplateSelectionScreen(
                         isSelected = selectedTemplate?.id == template.id,
                         onClick = {
                             selectedTemplate = template
-                            // TODO: Apply template and navigate to builder/preview
+                            if (resumeId.isNotBlank()) {
+                                navController.navigate(com.resumearchitect.ui.navigation.Screen.ThemePreview.createRoute(resumeId))
+                            } else {
+                                navController.navigate(com.resumearchitect.ui.navigation.Screen.ThemePreview.createRoute("new"))
+                            }
                         }
                     )
                 }
@@ -143,9 +149,6 @@ fun TemplateSelectionScreen(
         }
     }
 }
-
-
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CategoryFilterRow(
     selectedCategory: TemplateCategory,
@@ -159,9 +162,11 @@ fun CategoryFilterRow(
         TemplateCategory.TECHNICAL to "Technical"
     )
     
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         categories.forEach { (category, label) ->
             FilterChip(
@@ -293,18 +298,4 @@ fun TemplateCard(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun FlowRow(
-    modifier: Modifier = Modifier,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit
-) {
-    androidx.compose.foundation.layout.FlowRow(
-        modifier = modifier,
-        horizontalArrangement = horizontalArrangement,
-        verticalArrangement = verticalArrangement,
-        content = content
-    )
-}
+
