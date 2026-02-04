@@ -21,7 +21,7 @@ fun BuilderScreen(
 ) {
     val resume by viewModel.resume.collectAsState()
     val currentSection by viewModel.currentSection.collectAsState()
-    val isSaving by viewModel.isSaving.collectAsState()
+    val completionPercentage by viewModel.completionPercentage.collectAsState()
     
     Scaffold(
         topBar = {
@@ -33,7 +33,8 @@ fun BuilderScreen(
                         com.resumearchitect.ui.navigation.Screen.Preview.createRoute(resumeId)
                     )
                 },
-                isSaving = isSaving
+                isSaving = isSaving,
+                completionPercentage = completionPercentage
             )
         },
         bottomBar = {
@@ -66,7 +67,8 @@ fun BuilderTopBar(
     title: String,
     onBackClick: () -> Unit,
     onPreviewClick: () -> Unit,
-    isSaving: Boolean
+    isSaving: Boolean,
+    completionPercentage: Int
 ) {
     GlassCard(
         modifier = Modifier
@@ -78,9 +80,10 @@ fun BuilderTopBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 GlassIconButton(onClick = onBackClick) {
                     Icon(
                         Icons.Default.ArrowBack,
@@ -109,12 +112,18 @@ fun BuilderTopBar(
                 }
             }
             
-            GlassIconButton(onClick = onPreviewClick) {
-                Icon(
-                    Icons.Default.Visibility,
-                    contentDescription = "Preview",
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CompletionDial(percentage = completionPercentage)
+                
+                Spacer(modifier = Modifier.width(8.dp))
+                
+                GlassIconButton(onClick = onPreviewClick) {
+                    Icon(
+                        Icons.Default.Visibility,
+                        contentDescription = "Preview",
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
     }

@@ -162,38 +162,20 @@ fun ThemePreviewScreen(
 }
 
 /**
- * Sample resume preview with real-looking data
+ * Sample resume preview with DYNAMIC layouts
  */
 @Composable
 fun SampleResumePreview(
-    templateName: String,
-    colorScheme: ColorSchemes.ColorSchemeConfig
+    templateId: String,
+    colorScheme: ColorSchemes.ColorSchemeConfig,
+    sampleData: ThemePreviewLayouts.PreviewData
 ) {
     GlassCard(
         modifier = Modifier
             .fillMaxWidth()
-            .height(400.dp),
+            .height(500.dp), // Taller for better preview
         cornerRadius = 16.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color(colorScheme.primaryColor),
-                            Color(colorScheme.primaryColor).copy(alpha = 0.8f)
-                        )
-                    )
-                )
-        ) {
-            // Header with accent color
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .background(Color(colorScheme.accentColor))
-                    .padding(16.dp)
             ) {
                 Column {
                     Text(

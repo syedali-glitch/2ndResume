@@ -40,6 +40,22 @@ class BuilderViewModel @Inject constructor(
     val customSections: StateFlow<List<CustomSection>> = 
         repository.getCustomSections(resumeId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    // Completion Percentage
+    val completionPercentage: StateFlow<Int> = combine(
+        resume,
+        personalInfo,
+        workExperiences,
+        educations,
+        skills
+    ) { r, pInfo, exp, edu, sk ->
+        r?.calculateCompletion(
+            hasContact = pInfo?.email?.isNotBlank() == true,
+            experienceCount = exp.size,
+            educationCount = edu.size,
+            skillsCount = sk.size,
+            hasSummary = pInfo?.summary?.isNotBlank() == true
+        ) ?: 0
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
     
     // UI State
     private val _currentSection = MutableStateFlow(BuilderSection.CONTACT)

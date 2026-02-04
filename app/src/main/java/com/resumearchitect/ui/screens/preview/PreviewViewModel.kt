@@ -31,7 +31,11 @@ class PreviewViewModel @Inject constructor(
     val exportState: StateFlow<ExportState> = _exportState.asStateFlow()
     
     init {
-        generatePreview()
+        // Observe resume and generate preview when it becomes available
+        viewModelScope.launch {
+            resume.filterNotNull().first()
+            generatePreview()
+        }
     }
     
     /**
