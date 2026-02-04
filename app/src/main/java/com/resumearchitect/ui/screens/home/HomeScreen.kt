@@ -134,6 +134,14 @@ fun HomeScreen(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
             
+            // Statistics Panel
+            if (resumes.isNotEmpty()) {
+                StatisticsPanel(
+                    stats = statistics,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                )
+            }
+            
             // Resumes List or Empty State
             if (resumes.isEmpty()) {
                 EmptyState(
