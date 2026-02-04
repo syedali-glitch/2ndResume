@@ -112,8 +112,21 @@ fun ThemePreviewScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 SampleResumePreview(
-                    templateName = selectedTemplate.name,
-                    colorScheme = selectedColorScheme
+                    templateId = selectedTemplateId,
+                    colorScheme = selectedColorScheme,
+                    sampleData = ThemePreviewLayouts.PreviewData(
+                        name = "John Anderson",
+                        role = "Senior Software Engineer",
+                        email = "john.anderson@email.com",
+                        phone = "(555) 123-4567",
+                        summary = "Experienced software engineer with 8+ years of expertise in mobile and web development. Passionate about creating scalable applications.",
+                        company = "Tech Solutions Inc.",
+                        dates = "2020 - Present",
+                        description = "Led development of flagship mobile app. Improved performance by 40%.",
+                        university = "Stanford University",
+                        degree = "Master's in Computer Science",
+                        skills = listOf("Kotlin", "Android", "Compose", "System Design")
+                    )
                 )
             }
             
