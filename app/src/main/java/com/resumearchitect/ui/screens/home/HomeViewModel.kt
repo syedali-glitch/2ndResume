@@ -37,6 +37,15 @@ class HomeViewModel @Inject constructor(
         initialValue = emptyList()
     )
     
+    // Derived state for quick empty check (avoids unnecessary recompositions)
+    val hasResumes: StateFlow<Boolean> = resumes.map { it.isNotEmpty() }
+        .distinctUntilChanged()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
+    
     // Statistics calculation
     val statistics: StateFlow<ResumeStats> = _resumes.map { resumeList ->
         ResumeStats(

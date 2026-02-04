@@ -1,10 +1,20 @@
 package com.resumearchitect.data.models
 
+import androidx.compose.runtime.Immutable
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.UUID
 
-@Entity(tableName = "resumes")
+@Immutable
+@Entity(
+    tableName = "resumes",
+    indices = [
+        Index("updatedAt"),
+        Index("isActive"),
+        Index("isActive", "updatedAt")
+    ]
+)
 data class Resume(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),

@@ -1,11 +1,13 @@
 package com.resumearchitect.data.models
 
+import androidx.compose.runtime.Immutable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.UUID
 
+@Immutable
 @Entity(
     tableName = "skills",
     foreignKeys = [

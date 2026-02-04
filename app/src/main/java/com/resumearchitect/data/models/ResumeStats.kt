@@ -1,8 +1,11 @@
 package com.resumearchitect.data.models
 
+import androidx.compose.runtime.Immutable
+
 /**
  * Statistics data for resume insights
  */
+@Immutable
 data class ResumeStats(
     val totalResumes: Int = 0,
     val completedResumes: Int = 0,
