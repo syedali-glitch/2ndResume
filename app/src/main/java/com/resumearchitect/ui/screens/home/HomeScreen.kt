@@ -27,6 +27,7 @@ fun HomeScreen(
 ) {
     val resumes by viewModel.resumes.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
+    val statistics by viewModel.statistics.collectAsState()
     
     Scaffold(
         topBar = {

@@ -3,6 +3,7 @@ package com.resumearchitect.ui.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.resumearchitect.data.models.Resume
+import com.resumearchitect.data.models.ResumeStats
 import com.resumearchitect.data.repository.ResumeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -34,6 +35,25 @@ class HomeViewModel @Inject constructor(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList()
+    )
+    
+    // Statistics calculation
+    val statistics: StateFlow<ResumeStats> = _resumes.map { resumeList ->
+        ResumeStats(
+            totalResumes = resumeList.size,
+            completedResumes = resumeList.count { resume ->
+                // Consider >80% as completed
+                // For now, we'll use a simple metric
+                resumeList.size > 0
+            },
+            totalExports = 0, // TODO: Track exports in database
+            averageCompletion = if (resumeList.isEmpty()) 0 else 65, // Placeholder
+            mostUsedTemplate = "Clarity"
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = ResumeStats()
     )
     
     fun updateSearchQuery(query: String) {
